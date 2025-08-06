@@ -10,29 +10,30 @@
   <div class="player">
     <h1>🕹️ 80s Retro Player</h1>
 
-    <div class="track-info-container">
-      <img src="assets/cover1.jpg" alt="Album Cover" class="album-cover" />
+    <div class="track-info">
+      <img id="album-cover" src="assets/cover1.jpg" alt="Album Cover" class="album-cover" />
       <div class="track-text">
-        <div class="track-title">Track Title</div>
-        <div class="track-album">Album Name</div>
+        <div id="track-title">Song 1</div>
+        <div id="track-album">Retro Vibes</div>
       </div>
     </div>
 
-    <input type="range" id="seek-slider" value="0" class="seek-slider" />
-    
-    <div class="time-display">
+    <input type="range" id="seek-slider" min="0" value="0" step="1" />
+
+    <div class="time-row">
       <span id="current-time">0:00</span>
-      <span id="total-time">0:00</span>
+      <span id="duration">0:00</span>
     </div>
 
-    <div class="controls">
-      <button onclick="prevTrack()">⏮️</button>
-      <button onclick="togglePlayPause()">▶️ / ⏸️</button>
-      <button onclick="nextTrack()">⏭️</button>
+    <div class="controls-row">
+      <div class="player-buttons">
+        <button id="prev-btn">⏮️</button>
+        <button id="play-btn">▶️/⏸️</button>
+        <button id="next-btn">⏭️</button>
+      </div>
       <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1" class="volume-slider" />
     </div>
 
-    <!-- Hidden audio element used programmatically -->
     <audio id="audio-player">
       <source src="assets/song1.mp3" type="audio/mpeg" />
       Your browser does not support the audio element.
