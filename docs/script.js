@@ -12,16 +12,17 @@ function addToQueue(song) {
   queue.appendChild(li);
 }
 
+function selectSong(songUrl) {
+  const audio = document.getElementById("audio-player");
+  audio.src = songUrl;
+  audio.play();
+
+  const queueList = document.getElementById("queue-list");
+  const li = document.createElement("li");
+  li.textContent = songUrl.split("/").pop();
+  queueList.appendChild(li);
+}
+
 function showTipOptions() {
-  document.getElementById("tip-options").style.display = "block";
-}
-
-function payWithLightning() {
-  alert("Lightning Invoice Coming Soon...");
-  // Integration logic goes here
-}
-
-function payWithSolana() {
-  alert("Solana Wallet Connect Coming Soon...");
-  // Integration logic goes here
+  document.getElementById("tip-options").classList.remove("hidden");
 }
