@@ -1,9 +1,90 @@
-function selectSong(path) {
-  const player = document.getElementById("audio-player");
-  player.src = path;
+const player = document.getElementById("audio-player");
+const seekSlider = document.getElementById("seek-slider");
+const currentTimeEl = document.getElementById("current-time");
+const durationEl = document.getElementById("duration");
+const playButton = document.getElementById("play-btn");
+const prevButton = document.getElementById("prev-btn");
+const nextButton = document.getElementById("next-btn");
+const volumeSlider = document.getElementById("volume-slider");
+const trackTitleEl = document.getElementById("track-title");
+const trackAlbumEl = document.getElementById("track-album");
+
+// Playlist
+const playlist = ["assets/song1.mp3", "assets/song2.mp3"];
+let currentTrackIndex = 0;
+
+// Load current track
+function loadTrack(index) {
+  player.src = playlist[index];
+  updateTrackInfo(playlist[index]);
+  player.load();
   player.play();
+}
+
+function updateTrackInfo(path) {
+  const filename = path.split('/').pop().split('.')[0];
+  trackTitleEl.textContent = filename.replace(/_/g, ' ');
+  trackAlbumEl.textContent = "Album: Abyss Hits"; // Placeholder album name
+}
+
+// Time formatting
+function formatTime(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
+  return `${mins}:${secs}`;
+}
+
+// Sync seek slider with track progress
+player.addEventListener("timeupdate", () => {
+  seekSlider.value = player.currentTime;
+  currentTimeEl.textContent = formatTime(player.currentTime);
+});
+
+player.addEventListener("loadedmetadata", () => {
+  seekSlider.max = player.duration;
+  durationEl.textContent = formatTime(player.duration);
+});
+
+// Seek when slider moved
+seekSlider.addEventListener("input", () => {
+  player.currentTime = seekSlider.value;
+});
+
+// Play/Pause toggle
+playButton.addEventListener("click", () => {
+  if (player.paused) {
+    player.play();
+    playButton.textContent = "⏸";
+  } else {
+    player.pause();
+    playButton.textContent = "▶️";
+  }
+});
+
+// Prev/Next
+prevButton.addEventListener("click", () => {
+  currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+  loadTrack(currentTrackIndex);
+});
+
+nextButton.addEventListener("click", () => {
+  currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+  loadTrack(currentTrackIndex);
+});
+
+// Volume control
+volumeSlider.addEventListener("input", () => {
+  player.volume = volumeSlider.value;
+});
+
+// Playlist item selection
+function selectSong(path) {
+  const index = playlist.indexOf(path);
+  if (index !== -1) {
+    currentTrackIndex = index;
+    loadTrack(index);
+  }
   addToQueue(path);
-  updateTrackInfo(path);
 }
 
 function addToQueue(song) {
@@ -18,77 +99,8 @@ function showTipOptions() {
   tipDiv.classList.remove("hidden");
 }
 
-// === New player logic ===
-
-const audioPlayer = document.getElementById("audio-player");
-const seekSlider = document.getElementById("seek-slider");
-const volumeSlider = document.getElementById("volume-slider");
-const currentTimeEl = document.getElementById("current-time");
-const durationEl = document.getElementById("duration");
-const trackTitle = document.getElementById("track-title");
-const trackAlbum = document.getElementById("track-album");
-const albumCover = document.getElementById("album-cover");
-
-const playlist = [
-  { title: "Song 1", album: "Retro Vibes", src: "assets/song1.mp3", cover: "assets/cover1.jpg" },
-  { title: "Song 2", album: "Darkwave Nights", src: "assets/song2.mp3", cover: "assets/cover2.jpg" }
-];
-let currentTrackIndex = 0;
-
-function updateTrackInfo(src) {
-  const track = playlist.find(t => t.src === src);
-  if (track) {
-    trackTitle.textContent = track.title;
-    trackAlbum.textContent = track.album;
-    albumCover.src = track.cover;
-  }
-}
-
-audioPlayer.addEventListener("loadedmetadata", () => {
-  seekSlider.max = audioPlayer.duration;
-  durationEl.textContent = formatTime(audioPlayer.duration);
-});
-
-audioPlayer.addEventListener("timeupdate", () => {
-  seekSlider.value = audioPlayer.currentTime;
-  currentTimeEl.textContent = formatTime(audioPlayer.currentTime);
-});
-
-seekSlider.addEventListener("input", () => {
-  audioPlayer.currentTime = seekSlider.value;
-});
-
-volumeSlider.addEventListener("input", () => {
-  audioPlayer.volume = volumeSlider.value;
-});
-
-document.getElementById("play-btn").addEventListener("click", () => {
-  if (audioPlayer.paused) {
-    audioPlayer.play();
-  } else {
-    audioPlayer.pause();
-  }
-});
-
-document.getElementById("prev-btn").addEventListener("click", () => {
-  currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
-  playTrack(currentTrackIndex);
-});
-
-document.getElementById("next-btn").addEventListener("click", () => {
-  currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
-  playTrack(currentTrackIndex);
-});
-
-function playTrack(index) {
-  const track = playlist[index];
-  audioPlayer.src = track.src;
-  audioPlayer.play();
-  updateTrackInfo(track.src);
-}
-
-function formatTime(seconds) {
-  const minutes = Math.floor(seconds / 60);
-  const secs = Math.floor(seconds % 60);
-  return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
-}
+// Auto-load first song
+window.onload = () => {
+  loadTrack(currentTrackIndex);
+  playButton.textContent = "⏸";
+};
