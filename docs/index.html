@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>top hits from the abyss</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="player">
+    <h1>🕹️ 80s Retro Player</h1>
+    <audio id="audio-player" controls>
+      <source src="assets/song1.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+    <button onclick="showTipOptions()">❤️ I love this! Here’s a tip $</button>
+  </div>
+
+  <div class="tip-options" id="tip-options" style="display:none;">
+    <button onclick="payWithLightning()">⚡ Pay with Lightning</button>
+    <button onclick="payWithSolana()">💸 Pay with Solana</button>
+  </div>
+
+  <div class="columns">
+    <div class="playlist">
+      <h2>Playlist</h2>
+      <ul>
+        <li onclick="selectSong('assets/song1.mp3')">Song 1</li>
+        <li onclick="selectSong('assets/song2.mp3')">Song 2</li>
+      </ul>
+    </div>
+    <div class="queue">
+      <h2>Queue</h2>
+      <ul id="queue-list"></ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
