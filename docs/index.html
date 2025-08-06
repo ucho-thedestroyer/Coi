@@ -33,4 +33,35 @@
     </div>
 
     <!-- Hidden audio element used programmatically -->
-    <a
+    <audio id="audio-player">
+      <source src="assets/song1.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <div class="tip-icons">
+      <a href="lightning:lnurlp@yourname@zbd.gg" target="_blank" title="Tip with Lightning ⚡">
+        <img src="assets/lightning-icon.png" alt="Lightning Tip" class="tip-icon" />
+      </a>
+      <a href="solana:YOUR_SOLANA_ADDRESS_HERE?amount=0.02&label=RetroDJ&message=Love%20your%20track!" target="_blank" title="Tip with Solana 💜">
+        <img src="assets/solana-icon.png" alt="Solana Tip" class="tip-icon" />
+      </a>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="playlist">
+      <h2>Playlist</h2>
+      <ul>
+        <li onclick="selectSong('assets/song1.mp3')">Song 1</li>
+        <li onclick="selectSong('assets/song2.mp3')">Song 2</li>
+      </ul>
+    </div>
+    <div class="queue">
+      <h2>Queue</h2>
+      <ul id="queue-list"></ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
