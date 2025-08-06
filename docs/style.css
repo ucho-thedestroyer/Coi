@@ -1,0 +1,45 @@
+body {
+  font-family: 'Courier New', monospace;
+  background: black;
+  color: #00ff99;
+  padding: 20px;
+}
+
+.player {
+  text-align: center;
+  background: #111;
+  padding: 20px;
+  border: 2px solid #00ff99;
+  margin-bottom: 20px;
+}
+
+.columns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.playlist, .queue {
+  width: 48%;
+  background: #222;
+  padding: 10px;
+  border: 1px solid #00ff99;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  cursor: pointer;
+  padding: 5px;
+}
+
+button {
+  background: #00ff99;
+  color: black;
+  border: none;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+}
