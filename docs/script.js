@@ -10,7 +10,7 @@ const trackTitleEl = document.getElementById("track-title");
 const trackAlbumEl = document.getElementById("track-album");
 
 // Playlist
-const playlist = ["assets/song1.mp3", "assets/song2.mp3"];
+const playlist = ["assets/epilogue I.m4a", "assets/song2.mp3"];
 let currentTrackIndex = 0;
 
 // Load current track
