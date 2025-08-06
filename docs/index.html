@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>top hits from the abyss</title>
+  <title>Top Hits from the Abyss</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -14,11 +14,15 @@
       Your browser does not support the audio element.
     </audio>
     <button onclick="showTipOptions()">❤️ I love this! Here’s a tip $</button>
-  </div>
 
-  <div class="tip-options" id="tip-options" style="display:none;">
-    <button onclick="payWithLightning()">⚡ Pay with Lightning</button>
-    <button onclick="payWithSolana()">💸 Pay with Solana</button>
+    <div id="tip-options" class="tip-options hidden">
+      <a href="lightning:lnurlp@yourname@zbd.gg" target="_blank">
+        <button class="lightning-tip-btn">⚡ Tip with Lightning</button>
+      </a>
+      <a href="solana:YOUR_SOLANA_ADDRESS_HERE?amount=0.02&label=RetroDJ&message=Love%20your%20track!" target="_blank">
+        <button class="solana-tip-btn">💜 Tip with Solana</button>
+      </a>
+    </div>
   </div>
 
   <div class="columns">
