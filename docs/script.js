@@ -13,5 +13,6 @@ function addToQueue(song) {
 }
 
 function showTipOptions() {
-  document.getElementById("tip-options").classList.remove("hidden");
+  const tipDiv = document.getElementById("tip-options");
+  tipDiv.classList.remove("hidden");
 }
