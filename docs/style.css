@@ -6,11 +6,111 @@ body {
 }
 
 .player {
-  text-align: center;
   background: #111;
   padding: 20px;
   border: 2px solid #00ff99;
   margin-bottom: 20px;
+}
+
+/* Album Cover and Track Info */
+.track-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.album-cover {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #00ff99;
+}
+
+.track-text {
+  text-align: left;
+}
+
+#track-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+#track-album {
+  font-size: 0.9em;
+  color: #66ffaa;
+}
+
+/* Seek Slider */
+#seek-slider {
+  width: 100%;
+  margin: 10px 0;
+  -webkit-appearance: none;
+  background: #222;
+  height: 6px;
+  border-radius: 5px;
+  outline: none;
+}
+
+#seek-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #00d9ff; /* Cool matching blue */
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.time-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+  color: #66ffaa;
+  margin-bottom: 10px;
+}
+
+/* Player Buttons and Volume */
+.controls-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.player-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.player-buttons button {
+  background: #00ff99;
+  color: black;
+  border: none;
+  padding: 10px 14px;
+  font-size: 1.1em;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.player-buttons button:hover {
+  background: #00d9ff;
+}
+
+/* Volume Slider */
+.volume-slider {
+  width: 150px;
+  height: 6px;
+  background: #222;
+  border-radius: 5px;
+  -webkit-appearance: none;
+  outline: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #ff00cc; /* Vibrant neon magenta */
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .columns {
@@ -58,96 +158,4 @@ button {
   margin: 0 10px;
   cursor: pointer;
   vertical-align: middle;
-}
-
-/* --- NEW STYLES BELOW --- */
-
-.track-info-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 10px;
-}
-
-.album-cover {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  margin-right: 15px;
-  border: 1px solid #00ff99;
-}
-
-.track-text {
-  text-align: left;
-}
-
-.track-title {
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #00ff99;
-}
-
-.track-album {
-  font-size: 0.9em;
-  color: #88ffcc;
-}
-
-.seek-slider {
-  width: 100%;
-  margin: 10px 0;
-  -webkit-appearance: none;
-  height: 8px;
-  background: linear-gradient(to right, #00ff99, #00ccff);
-  border-radius: 4px;
-  outline: none;
-}
-
-.seek-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  height: 16px;
-  width: 16px;
-  background: #00ccff;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.time-display {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.85em;
-  color: #66ffaa;
-  margin: 5px 0 10px;
-}
-
-.controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.controls button {
-  background: #00ccff;
-  color: black;
-  padding: 8px 12px;
-  font-size: 1em;
-}
-
-.volume-slider {
-  width: 150px;
-  height: 8px;
-  background: #00ff99;
-  margin-left: auto;
-  -webkit-appearance: none;
-  border-radius: 4px;
-  outline: none;
-}
-
-.volume-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  height: 16px;
-  width: 16px;
-  background: #00ff99;
-  border-radius: 50%;
-  cursor: pointer;
 }
