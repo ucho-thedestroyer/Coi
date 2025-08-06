@@ -47,26 +47,14 @@ button {
   display: none;
 }
 
-.tip-options {
+.tip-icons {
   margin-top: 15px;
 }
 
-.tip-options button {
-  margin: 5px;
-  padding: 10px 16px;
-  font-size: 14px;
+.tip-icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 10px;
   cursor: pointer;
-  border-radius: 8px;
-  border: none;
+  vertical-align: middle;
 }
-
-.lightning-tip-btn {
-  background-color: gold;
-  color: black;
-}
-
-.solana-tip-btn {
-  background-color: #4f2b87;
-  color: white;
-}
-
