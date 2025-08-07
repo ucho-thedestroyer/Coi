@@ -1,237 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Retro Music Player - Alt Page</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+  <head>
+    <meta charset="utf-8" />
+    <title>the trippy sounds of analog machines</title>
+    <!-- Font Awesome (for icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  
+    <link rel="stylesheet" type="text/css" href="top.css" />
+    <meta name="description" content="make some noise, you'll die soon" />
+    <meta name="author" content="easterntraveler" />
+    
+  </head>
 
-    :root {
-      --primary-clr: #fffcf2;
-      --background-clr: #1c1c2b;
-      --accent: #f72585;
-      --accent-light: #7209b7;
-      --highlight: #3a0ca3;
-      --shadow: rgba(0, 0, 0, 0.4);
-    }
+  <body>
 
-    * {
-      box-sizing: border-box;
-      font-family: 'Orbitron', sans-serif;
-    }
+     <!-- main -->
+    
 
-    body {
-      margin: 0;
-      background: var(--background-clr);
-      color: var(--primary-clr);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 2rem;
-      min-height: 100vh;
-    }
+<div class="player-container">
+  <table>
+    <tr>
+      <td>
+        <div class="player-content">
+          <div class="albumcover">
+            <img id="albumCover" src="https://github.com/ucho-thedestroyer/Io/raw/Backup/docs/top/covers/IMG_0513.jpeg" alt="Album Cover">
+          </div>
+          
+          <div class="music-player">
+            <div class="playin">
+              <h1 id="song-title">Song Title Goes Here</h1>
+            </div>
+            <p id="song-duration">00:00</p>
+            <audio id="song" src=""></audio>
+            <input type="range" value="0" id="progress">
+            
+            <div class="controls">
+              <button class="backward" title="Previous">
+                <i class="fa fa-angles-left"></i>
+              </button>
+              <button class="play-pause-btn" title="Play/Pause">
+                <i class="fa fa-play"></i>
+              </button>
+              <button class="forward" title="Next">
+                <i class="fa fa-angles-right"></i>
+              </button>
+            </div>
+          </div>
+          
+          <div class="tip-container">
+            <div class="note">
+              <a href="https://github.com/ucho-thedestroyer/Io/raw/Backup/docs/top/epilogue%20I.m4a">
+                Tip 4 this track!
+              </a><br>
+              <b>And download its high quality FLAC.</b><br>
+              Your $upport helps me keep going.
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
 
-    .player-container {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      max-width: 1080px;
-      background: #2a2a40;
-      border-radius: 16px;
-      box-shadow: 0 0 12px var(--accent-light);
-      padding: 1rem;
-      gap: 1rem;
-    }
 
-    .music-player {
-      background: linear-gradient(145deg, var(--accent), var(--highlight));
-      border-radius: 12px;
-      padding: 1.2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.6rem;
-    }
 
-    .music-player h1 {
-      font-size: 1.6rem;
-      margin: 0;
-    }
 
-    .controls {
-      display: flex;
-      gap: 1rem;
-    }
+    
+     <!-- top bar -->
 
-    .controls button {
-      background: var(--accent-light);
-      border: none;
-      border-radius: 50%;
-      padding: 12px 14px;
-      color: white;
-      font-size: 1.1rem;
-      cursor: pointer;
-      box-shadow: 0 2px 8px var(--shadow);
-    }
 
-    .controls button:hover {
-      background: var(--highlight);
-    }
+<div class="topbar">
+  <table>
+    <tr>
+      <td colspan="9">
+        <table>
+          <tr>
+            <td class="nav-links">
+              <b>&middot;</b> 
+              <a href="top/samples.html">Looking for samples?</a>
+              <b>&middot;</b>
+            </td>
+            <td class="nav-links nav-links-right">
+              <b>
+                <img src="https://github.com/ucho-thedestroyer/Io/raw/main/docs/hot.gif" alt="Hot">
+              </b>
+              <a href="top/tape.html" target="_blank">Latest tape hit!</a> 
+              <b>&middot;</b> 
+              <a href="quat/quarterly.html" target="_blank">buy the mixtape!</a> 
+              <b>&middot;</b>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
 
-    .progress {
-      width: 100%;
-    }
 
-    .progress input[type="range"] {
-      width: 100%;
-      accent-color: var(--accent);
-    }
 
-    .columns {
-      display: flex;
-      flex-direction: row;
-      gap: 1rem;
-    }
+    
+<!-- centre -->
+    
 
-    .column {
-      flex: 1;
-      background: #1e1e2e;
-      border-radius: 12px;
-      padding: 1rem;
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
-    }
-
-    .column h3 {
-      margin-top: 0;
-    }
-
-    .track, .queue-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.4rem;
-      border-bottom: 1px solid #444;
-    }
-
-    .track button, .queue-item button {
-      background: transparent;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      padding: 2px 8px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-      .columns {
-        flex-direction: column;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="player-container">
-    <div class="music-player">
-      <h1>Now Playing</h1>
-      <div class="controls">
-        <button onclick="skipPrev()">⏮</button>
-        <button onclick="togglePlayPause()">▶️</button>
-        <button onclick="skipNext()">⏭</button>
+<div class="core">
+  <div class="core-container">
+    <div class="poll-section">
+      <div class="poll-container">
+        <div class="poll-header">Poll time</div>
+        <div class="poll">
+          <div class="question"></div>
+          <div class="answers"></div>
+        </div>
+        
+        <div class="mp3player">
+          <div class="mp3p">
+            <img src="https://github.com/ucho-thedestroyer/Io/raw/Backup/docs/top/IMG_0509.gif" alt="MP3 Player">
+            <p>modular bangers, all analog</p>
+          </div>
+        </div>
       </div>
-      <div class="progress">
-        <input type="range" id="progress" min="0" max="100" value="0" />
-      </div>
-      <audio id="audio" src=""></audio>
     </div>
 
-    <div class="columns">
-      <div class="column">
-        <h3>Playlist</h3>
-        <div class="track">Track 1 <button onclick="addToQueue('Track 1', 'song1.mp3')">+</button></div>
-        <div class="track">Track 2 <button onclick="addToQueue('Track 2', 'song2.mp3')">+</button></div>
-        <div class="track">Track 3 <button onclick="addToQueue('Track 3', 'song3.mp3')">+</button></div>
-      </div>
-      <div class="column">
-        <h3>Queue</h3>
-        <div id="queue"></div>
+    <div class="tracks-section">
+      <div class="tracks-container">
+        <div class="tracklist-header">
+          <div class="album-tracks-header">Album tracks</div>
+          <div class="album-select-header">Choose an album</div>
+        </div>
+        
+        <div class="tracks-content">
+          <div class="tracklist" id="dynamic-tracklist">
+            <p class="placeholder-message">Please select an album to view its tracklist.</p>
+          </div>
+          
+          <div class="album-select">
+            <div class="album" data-album-id="album1">
+              <a href="#" class="bs">Toxic</a><br>
+              <img src="" alt="Britney Spears - Toxic">
+            </div>
+            <div class="album-divider"></div>
+            <div class="album" data-album-id="album2">
+              <a href="#" class="bs">Colma</a><br>
+              <img src="https://upload.wikimedia.org/wikipedia/en/7/7e/Colma.jpg" alt="Buckethead - Colma">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+</div>
 
-  <script>
-    const audio = document.getElementById('audio');
-    const progress = document.getElementById('progress');
-    const queueContainer = document.getElementById('queue');
-    let queue = [];
-    let currentIndex = 0;
-    let isPlaying = false;
 
-    function addToQueue(title, src) {
-      queue.push({ title, src });
-      updateQueue();
-      if (!audio.src) playCurrent();
-    }
+    
+<!-- bottomsup -->
+    
+<p>
 
-    function updateQueue() {
-      queueContainer.innerHTML = '';
-      queue.forEach((track, index) => {
-        const item = document.createElement('div');
-        item.className = 'queue-item';
-        item.innerHTML = `${track.title} <button onclick="removeTrack(${index})">✖</button>`;
-        queueContainer.appendChild(item);
-      });
-    }
+<div class="bottombar">
+  <div class="bottombar-content">
+    <div class="bottombar-links">
+      <a href="https://t.me/+nhV0QAIVM9Q1Njc1" target="_blank">forum</a>
+      <span class="separator">&#149;</span>
+      <a href="https://damus.io/npub1ekcjrjzyw45weqhee8pst7wmzw7a4zcp7jh8hwn9excnk9094evqn7yf8j" target="_blank">DM us</a>
+      <span class="separator">&#149;</span>
+      <a href="index.html" target="_blank" class="bw-highlight">home</a>
+    </div>
+    <div class="bottombar-copyright">
+      easterntr;, All Rights Reserved &copy; 1994-1996
+    </div>
+  </div>
+</div>
 
-    function removeTrack(index) {
-      queue.splice(index, 1);
-      if (index === currentIndex) {
-        playCurrent();
-      }
-      updateQueue();
-    }
-
-    function playCurrent() {
-      if (queue[currentIndex]) {
-        audio.src = queue[currentIndex].src;
-        audio.play();
-        isPlaying = true;
-      } else {
-        audio.pause();
-        audio.src = '';
-        isPlaying = false;
-      }
-    }
-
-    function togglePlayPause() {
-      if (!audio.src && queue.length > 0) {
-        playCurrent();
-      } else if (audio.paused) {
-        audio.play();
-        isPlaying = true;
-      } else {
-        audio.pause();
-        isPlaying = false;
-      }
-    }
-
-    function skipNext() {
-      if (currentIndex < queue.length - 1) {
-        currentIndex++;
-        playCurrent();
-      }
-    }
-
-    function skipPrev() {
-      if (currentIndex > 0) {
-        currentIndex--;
-        playCurrent();
-      }
-    }
-
-    audio.addEventListener('timeupdate', () => {
-      progress.value = (audio.currentTime / audio.duration) * 100;
-    });
-  </script>
+<div align="center">
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/ionicons@7.1.0/dist/ionicons.js"></script>
+  <script src="top.js"></script>
+    <script src="poll.js"></script>
+    
+    
 </body>
 </html>
