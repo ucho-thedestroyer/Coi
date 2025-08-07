@@ -21,31 +21,33 @@ function loadTrack(index) {
   player.play();
 }
 
+// Update title and album display
 function updateTrackInfo(path) {
   const filename = path.split('/').pop().split('.')[0];
   trackTitleEl.textContent = filename.replace(/_/g, ' ');
   trackAlbumEl.textContent = "Album: Abyss Hits"; // Placeholder album name
 }
 
-// Time formatting
+// Format seconds to MM:SS
 function formatTime(seconds) {
   const mins = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
   return `${mins}:${secs}`;
 }
 
-// Sync seek slider with track progress
+// Sync seek slider with playback
 player.addEventListener("timeupdate", () => {
   seekSlider.value = player.currentTime;
   currentTimeEl.textContent = formatTime(player.currentTime);
 });
 
+// Update slider max and duration text when metadata loads
 player.addEventListener("loadedmetadata", () => {
   seekSlider.max = player.duration;
   durationEl.textContent = formatTime(player.duration);
 });
 
-// Seek when slider moved
+// Jump to new time when seek slider is moved
 seekSlider.addEventListener("input", () => {
   player.currentTime = seekSlider.value;
 });
@@ -61,12 +63,13 @@ playButton.addEventListener("click", () => {
   }
 });
 
-// Prev/Next
+// Previous track
 prevButton.addEventListener("click", () => {
   currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
   loadTrack(currentTrackIndex);
 });
 
+// Next track
 nextButton.addEventListener("click", () => {
   currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
   loadTrack(currentTrackIndex);
@@ -77,7 +80,7 @@ volumeSlider.addEventListener("input", () => {
   player.volume = volumeSlider.value;
 });
 
-// Playlist item selection
+// Select song from playlist
 function selectSong(path) {
   const index = playlist.indexOf(path);
   if (index !== -1) {
@@ -87,6 +90,7 @@ function selectSong(path) {
   addToQueue(path);
 }
 
+// Add selected song to visual queue
 function addToQueue(song) {
   const queue = document.getElementById("queue-list");
   const li = document.createElement("li");
@@ -94,13 +98,15 @@ function addToQueue(song) {
   queue.appendChild(li);
 }
 
+// Show tipping options
 function showTipOptions() {
   const tipDiv = document.getElementById("tip-options");
   tipDiv.classList.remove("hidden");
 }
 
-// Auto-load first song
+// Initialize player on page load
 window.onload = () => {
   loadTrack(currentTrackIndex);
+  player.volume = volumeSlider.value;
   playButton.textContent = "⏸";
 };
