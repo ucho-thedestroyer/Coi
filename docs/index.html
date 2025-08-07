@@ -3,270 +3,235 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Top Hits from the Abyss</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <title>Retro Music Player - Alt Page</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+    :root {
+      --primary-clr: #fffcf2;
+      --background-clr: #1c1c2b;
+      --accent: #f72585;
+      --accent-light: #7209b7;
+      --highlight: #3a0ca3;
+      --shadow: rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Orbitron', sans-serif;
+    }
+
     body {
       margin: 0;
-      font-family: 'Share Tech Mono', monospace;
-      background: linear-gradient(to bottom, #1a0033, #330033);
-      color: #00ffff;
-      overflow-x: hidden;
-    }
-    header {
-      text-align: center;
+      background: var(--background-clr);
+      color: var(--primary-clr);
+      display: flex;
+      justify-content: center;
+      align-items: center;
       padding: 2rem;
-      font-family: 'Press Start 2P', cursive;
-      color: #00ffff;
+      min-height: 100vh;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-    header p {
-      color: #aaa;
-      margin-top: 0.5rem;
-    }
+
     .player-container {
-      border: 2px solid #00ffff;
-      margin: 1rem auto;
-      max-width: 90%;
-      padding: 1rem;
-      background: #220033;
-      border-radius: 10px;
-    }
-    .controls, .player-info {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-    .controls button {
-      background: #ff00ff;
-      border: none;
-      padding: 1rem;
-      margin: 0.2rem;
-      border-radius: 5px;
-      color: #fff;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .progress, .volume {
-      width: 100%;
-      margin-top: 1rem;
-    }
-    .track-columns {
-      display: flex;
-      justify-content: space-around;
-      margin: 1rem;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-    .column {
-      flex: 1;
-      min-width: 300px;
-      background: #1a0026;
-      border: 2px solid #ff0;
-      padding: 1rem;
-      border-radius: 10px;
-      max-height: 400px;
-      overflow-y: auto;
-    }
-    .column.right {
-      border-color: #a0f;
-    }
-    .track {
-      padding: 1rem;
-      margin: 0.5rem 0;
-      background: linear-gradient(to right, #00ffff, #ff00ff);
-      color: #000;
-      border-radius: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .track .info {
       display: flex;
       flex-direction: column;
+      width: 100%;
+      max-width: 1080px;
+      background: #2a2a40;
+      border-radius: 16px;
+      box-shadow: 0 0 12px var(--accent-light);
+      padding: 1rem;
+      gap: 1rem;
     }
-    .track .actions button {
-      background: #222;
-      color: #fff;
-      border: 1px solid #ff00ff;
-      padding: 0.5rem;
+
+    .music-player {
+      background: linear-gradient(145deg, var(--accent), var(--highlight));
+      border-radius: 12px;
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .music-player h1 {
+      font-size: 1.6rem;
+      margin: 0;
+    }
+
+    .controls {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .controls button {
+      background: var(--accent-light);
+      border: none;
+      border-radius: 50%;
+      padding: 12px 14px;
+      color: white;
+      font-size: 1.1rem;
       cursor: pointer;
-      border-radius: 5px;
+      box-shadow: 0 2px 8px var(--shadow);
     }
-    .now-playing {
-      font-weight: bold;
-      color: #fff;
+
+    .controls button:hover {
+      background: var(--highlight);
     }
-    audio {
-      display: none;
+
+    .progress {
+      width: 100%;
+    }
+
+    .progress input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+
+    .columns {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+    }
+
+    .column {
+      flex: 1;
+      background: #1e1e2e;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
+    }
+
+    .column h3 {
+      margin-top: 0;
+    }
+
+    .track, .queue-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.4rem;
+      border-bottom: 1px solid #444;
+    }
+
+    .track button, .queue-item button {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 2px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .columns {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>RETROWAVE BEATS</h1>
-    <p>Welcome back, !</p>
-  </header>
   <div class="player-container">
-    <div class="player-info">
-      <div>
-        <h2 id="current-title">Billie Jean</h2>
-        <p id="current-artist">Michael Jackson • 1983</p>
+    <div class="music-player">
+      <h1>Now Playing</h1>
+      <div class="controls">
+        <button onclick="skipPrev()">⏮</button>
+        <button onclick="togglePlayPause()">▶️</button>
+        <button onclick="skipNext()">⏭</button>
       </div>
-      <button>BUY THIS</button>
-    </div>
-    <input type="range" class="progress" min="0" max="100" id="progressBar" />
-    <div class="controls">
-      <div>
-        <button onclick="skipTrack(-1)">&laquo;</button>
-        <button onclick="togglePlay()" id="playBtn">▶</button>
-        <button onclick="skipTrack(1)">&raquo;</button>
+      <div class="progress">
+        <input type="range" id="progress" min="0" max="100" value="0" />
       </div>
-      <input type="range" class="volume" min="0" max="1" step="0.01" id="volumeSlider" />
-    </div>
-    <audio id="audioPlayer" preload="auto"></audio>
-  </div>
-
-  <div class="track-columns">
-    <div class="column left">
-      <h3>🎵 80s HITS PLAYLIST</h3>
-      <div class="track" data-title="epilogue I" data-artist="some album" data-duration="4:54" data-src="assets/epilogue I.mp4">
-        <div class="info">
-          <span>Billie Jean</span>
-          <small>Michael Jackson • 1983</small>
-        </div>
-        <div class="actions">
-          <button onclick="addToQueue(this)">+</button>
-        </div>
-      </div>
-      <div class="track" data-title="Don't Stop Believin'" data-artist="Journey" data-duration="4:11" data-src="https://example.com/audio/dont-stop.mp3">
-        <div class="info">
-          <span>Don't Stop Believin'</span>
-          <small>Journey • 1981</small>
-        </div>
-        <div class="actions">
-          <button onclick="addToQueue(this)">+</button>
-        </div>
-      </div>
+      <audio id="audio" src=""></audio>
     </div>
 
-    <div class="column right">
-      <h3>🔹 QUEUE (<span id="queue-count">0</span> songs)</h3>
-      <div id="queue-list"></div>
+    <div class="columns">
+      <div class="column">
+        <h3>Playlist</h3>
+        <div class="track">Track 1 <button onclick="addToQueue('Track 1', 'song1.mp3')">+</button></div>
+        <div class="track">Track 2 <button onclick="addToQueue('Track 2', 'song2.mp3')">+</button></div>
+        <div class="track">Track 3 <button onclick="addToQueue('Track 3', 'song3.mp3')">+</button></div>
+      </div>
+      <div class="column">
+        <h3>Queue</h3>
+        <div id="queue"></div>
+      </div>
     </div>
   </div>
 
   <script>
-    const audio = document.getElementById('audioPlayer');
-    const playBtn = document.getElementById('playBtn');
-    const progressBar = document.getElementById('progressBar');
-    const volumeSlider = document.getElementById('volumeSlider');
-    const queueList = document.getElementById('queue-list');
+    const audio = document.getElementById('audio');
+    const progress = document.getElementById('progress');
+    const queueContainer = document.getElementById('queue');
     let queue = [];
     let currentIndex = 0;
+    let isPlaying = false;
 
-    volumeSlider.addEventListener('input', () => {
-      audio.volume = volumeSlider.value;
-    });
+    function addToQueue(title, src) {
+      queue.push({ title, src });
+      updateQueue();
+      if (!audio.src) playCurrent();
+    }
 
-    audio.addEventListener('timeupdate', () => {
-      const progress = (audio.currentTime / audio.duration) * 100;
-      progressBar.value = progress || 0;
-    });
+    function updateQueue() {
+      queueContainer.innerHTML = '';
+      queue.forEach((track, index) => {
+        const item = document.createElement('div');
+        item.className = 'queue-item';
+        item.innerHTML = `${track.title} <button onclick="removeTrack(${index})">✖</button>`;
+        queueContainer.appendChild(item);
+      });
+    }
 
-    progressBar.addEventListener('input', () => {
-      audio.currentTime = (progressBar.value / 100) * audio.duration;
-    });
+    function removeTrack(index) {
+      queue.splice(index, 1);
+      if (index === currentIndex) {
+        playCurrent();
+      }
+      updateQueue();
+    }
 
-    audio.addEventListener('ended', () => {
-      skipTrack(1);
-    });
-
-    function togglePlay() {
-      if (audio.paused) {
+    function playCurrent() {
+      if (queue[currentIndex]) {
+        audio.src = queue[currentIndex].src;
         audio.play();
-        playBtn.textContent = '⏸';
+        isPlaying = true;
       } else {
         audio.pause();
-        playBtn.textContent = '▶';
-      }
-    }
-
-    function playTrack(index) {
-      const track = queue[index];
-      if (!track) return;
-
-      audio.src = track.src;
-      document.getElementById('current-title').textContent = track.title;
-      document.getElementById('current-artist').textContent = track.artist;
-      audio.play();
-      playBtn.textContent = '⏸';
-    }
-
-    function skipTrack(direction) {
-      currentIndex += direction;
-      if (currentIndex < 0) currentIndex = queue.length - 1;
-      if (currentIndex >= queue.length) currentIndex = 0;
-      playTrack(currentIndex);
-    }
-
-    function addToQueue(button) {
-      const trackEl = button.closest('.track');
-      const track = {
-        title: trackEl.dataset.title,
-        artist: trackEl.dataset.artist,
-        duration: trackEl.dataset.duration,
-        src: trackEl.dataset.src
-      };
-
-      queue.push(track);
-      const item = document.createElement('div');
-      item.classList.add('track');
-      item.innerHTML = `
-        <div class="info">
-          <span>${track.title}</span>
-          <small>${track.artist}</small>
-        </div>
-        <div class="actions">
-          <small>${track.duration}</small>
-          <button onclick="removeFromQueue(this)">x</button>
-        </div>
-      `;
-      queueList.appendChild(item);
-      updateQueueCount();
-
-      // If first track added, auto play
-      if (queue.length === 1) {
-        playTrack(0);
-      }
-    }
-
-    function removeFromQueue(button) {
-      const trackEl = button.closest('.track');
-      const index = Array.from(queueList.children).indexOf(trackEl);
-      if (index === currentIndex) {
-        audio.pause();
-      }
-      queue.splice(index, 1);
-      queueList.removeChild(trackEl);
-      updateQueueCount();
-      if (index === currentIndex && queue.length > 0) {
-        playTrack(index % queue.length);
-      } else if (queue.length === 0) {
         audio.src = '';
-        document.getElementById('current-title').textContent = '';
-        document.getElementById('current-artist').textContent = '';
-        playBtn.textContent = '▶';
+        isPlaying = false;
       }
     }
 
-    function updateQueueCount() {
-      document.getElementById('queue-count').innerText = queue.length;
+    function togglePlayPause() {
+      if (!audio.src && queue.length > 0) {
+        playCurrent();
+      } else if (audio.paused) {
+        audio.play();
+        isPlaying = true;
+      } else {
+        audio.pause();
+        isPlaying = false;
+      }
     }
+
+    function skipNext() {
+      if (currentIndex < queue.length - 1) {
+        currentIndex++;
+        playCurrent();
+      }
+    }
+
+    function skipPrev() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        playCurrent();
+      }
+    }
+
+    audio.addEventListener('timeupdate', () => {
+      progress.value = (audio.currentTime / audio.duration) * 100;
+    });
   </script>
 </body>
 </html>
